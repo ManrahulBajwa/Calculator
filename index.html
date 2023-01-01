@@ -6,67 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculator</title>
     <link rel="stylesheet" href="style.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
-    
-    <div class="top_themeBar">
-        <h6>Select Theme</h6>
-       <div class="btnbar">
-            <button id="primary_theme">Primary Theme</button>
-            <button id="secondary_theme">Secondary Theme</button>
-       </div>
-    </div>
-
     <div class="container">
         <div class="screen">
-            <input id="screen"  type="text">
+            <input id="screen"  type="text" disabled>
         </div>
         <div class="btnbox">
             <div class="btnrow">
-
-                <button class="merged" id="clear"  onclick="clearit()" >Clear</button>
-
-                <button id="backspace" onclick="backspace()">C</button>
-                <button id="divi" onclick="addval('/')" >÷</button>
-            </div>
-
-            <div class="btnrow">
-                <button  onclick="addval(1)">1</button>
-                <button  onclick="addval(2)">2</button>
-                <button  onclick="addval(3)">3</button>
-                <button  onclick="addval('+')">+</button>
-            </div>
-
-
-            <div class="btnrow">
-                <button  onclick="addval(4)">4</button>
-                <button  onclick="addval(5)">5</button>
-                <button  onclick="addval(6)">6</button>
-                <button id="minus" onclick="addval('-')">-</button>
-            </div>
-
-            
-            <div class="btnrow">
-                <button  onclick="addval(7)">7</button>
-                <button  onclick="addval(8)">8</button>
-                <button  onclick="addval(9)">9</button>
-                <button  onclick="addval('*')">x</button>
-
+                <button class="merged" id="clear" >Clear</button>
+                <button id="backspace" >C</button>
+                <button id="divi">÷</button>
             </div>
             <div class="btnrow">
-                <button id="dot" onclick="addval('.')">.</button>
-                <button  onclick="addval(0)">0</button>
-                <button id="modulas" onclick="addval('%')">%</button>
-                <button id="equalto" onclick="calc()">=</button>
-                
+                <button>1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>+</button>
+            </div>
+            <div class="btnrow">
+                <button>4</button>
+                <button>5</button>
+                <button>6</button>
+                <button id="minus">-</button>
+            </div>
+            <div class="btnrow">
+                <button>7</button>
+                <button>8</button>
+                <button>9</button>
+                <button  >x</button>
+            </div>
+            <div class="btnrow">
+                <button id="dot">.</button>
+                <button>0</button>
+                <button id="modulas" >%</button>
+                <button id="equalto">=</button>
             </div>
         </div>
-
     </div>
+    <script>
+        let s=document.getElementById("screen"),wl=["+","-","x",".","%","\xf7"];document.querySelectorAll("button").forEach(b=>{b.addEventListener("click",()=>{switch((!isNaN(parseInt(b.innerText))||wl.includes(b.innerText))&&(s.value+=b.innerText),b.innerText){case"=":let sv=eval(s.value.replace("x","*").replace("\xf7","/"));void 0!=sv?s.value=sv:s.value=0;break;case"C":s.value=s.value.substr(0,s.value.length-1);break;case"Clear":s.value=""}})}),window.addEventListener("keydown",e=>{switch((!isNaN(parseInt(e.key))||wl.includes(e.key))&&(s.value+=e.key),e.key){case"Enter":let sv=eval(s.value.replace("x","*").replace("\xf7","/"));void 0!=sv?s.value=sv:s.value=0;break;case"Backspace":s.value=s.value.substr(0,s.value.length-1);break;case"/":s.value+="\xf7";break;case"*":s.value+="x"}});
 
-
-
-    <script src="script.js"></script>
+    </script>
 </body>
 </html>
